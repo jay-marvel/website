@@ -40,14 +40,14 @@ export const actions:Actions = {
             if (!userAttemptingLogin) {
                 console.log("User not found with email:", email);
                 loginResponse.error = true;
-                loginResponse.message = "Invalid username or password!";
+                loginResponse.message = "Invalid username!";
                 return loginResponse;
             }
             const authAttempt = await brcyptjs.compare(password,userAttemptingLogin.password);
             if(!authAttempt){
                 console.log('password comparison failed')
-                loginResponse.error = true,
-                loginResponse.message = "Invalid username or password!"
+                loginResponse.error = true;
+                loginResponse.message = "Invalid password!"
                 return loginResponse
             }
 
@@ -56,14 +56,11 @@ export const actions:Actions = {
                 const {password,...userAttempingLoginMinusPassword} = userAttemptingLogin;
                 const authToken = jwt.sign({authedUser:userAttempingLoginMinusPassword },SECRET_INGREDIENT,{expiresIn:'24h'});
                 cookies.set('authToken',authToken,{httpOnly: true,maxAge: 60 * 60 * 24,sameSite: 'strict', path:"/"})
-                throw redirect(302,'/');
+                loginResponse.message = "correct username and password!";
+                redirect(303,'/');
             }
-        } catch (error) {
-            console.error("Error during login process:", error);
-            loginResponse.error = true;
-            loginResponse.message = "An error occurred during login.";
-            return loginResponse;
         }
+        
         finally{
             return loginResponse
         }

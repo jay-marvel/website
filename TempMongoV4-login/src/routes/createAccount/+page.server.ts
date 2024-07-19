@@ -60,10 +60,10 @@ export const actions: Actions = {
       const userToInsert = await registerFormToUserWithoutId(SignUpResponse);
       const resultOfInsert = await registerUser(collection, userToInsert);
       if (resultOfInsert.acknowledged && resultOfInsert.insertedId){
-        //this works, sends user back to home page
+        
         
         throw redirect(303, `/`);
-        //add custon event handling here so that it sends something to make the modal disappear
+        
         
       } 
   

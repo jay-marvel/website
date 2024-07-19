@@ -4,16 +4,15 @@
 	import Info from './DocInfo.svelte';
 	
 	export let data: PageData;
-	$: ({tutorials, users} = data)
+	$: ({
+		tutorials, users} = data)
 	let title;
 	let author;
 	let pages;
 	let ratings;
 	let genres;
-
-	//tags
-	let tagTitle = "";
-	let tagGenre = "";
+	
+	
 
 	//tabs stuff
 	let items = ["Search cloud", "Get more details", "upload stuff"	];
@@ -31,16 +30,10 @@
 		console.log(genres)
 		activeItem = "Get more details";
 	}
-
 	const backToSearch = () =>{
 		activeItem = "Search cloud";
 	}
-	const tagName = (e) => {
-		tagTitle = e.target.value;
-	}
-	const tagGenres = (e) => {
-		tagGenre = e.target.value;
-	}
+	
 	
 
 
@@ -64,20 +57,15 @@
 <Tabs {activeItem} {items} on:tabChange={tabChange}/>
 
 	{#if activeItem === 'Search cloud'}
-	<div>
-		<input type="text" class="search-input" on:input={tagName} placeholder="Search titles"> 
-		<input type="text" class="search-input" on:input={tagGenres} placeholder="Search Genres"> 
-	</div>
+	
 	{#each tutorials as tutorial}
-		{#if tutorial.title.includes(tagTitle) || tagTitle == ""}
-			{#if tutorial.genres.some(genres =>genres.includes(tagGenre)) || tagGenre == ""}
-					<article>
-						<h2>{tutorial.title}</h2>
-						<button on:click={() =>{switchTabs(tutorial)}}>Get more info</button>
+		
+		<article>
+			<h2>{tutorial.title}</h2>
+			<button on:click={() =>{switchTabs(tutorial)}}>Get more info</button>
 				
-					</article>
-			{/if}
-		{/if}
+		</article>
+			
 	{/each}
 	{:else if activeItem == "Get more details"}
 		<Info name={title} author={author} pages={pages} ratings={ratings} genres={genres}/>

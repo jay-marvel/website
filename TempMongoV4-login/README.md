@@ -1,3 +1,6 @@
+# Database
+Database used is a mongodb, from mongodb compass. There is a database called bookstore with a collection books, and another database called AllUsers with a collection users. 
+
 # create-svelte
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).

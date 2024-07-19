@@ -1,60 +1,44 @@
-<script>
+<script lang="ts">
 	
 	import logo1 from '$lib/images/Drexel-logo.png';
-
-	import Modal from './Modal.svelte';
-	import AddPerson from './AddPersonForm.svelte';
+	import { redirect } from '@sveltejs/kit';
 
 	import Singup from './Signup/Modal.svelte';
-	//import Signup from './Signup/signup.svelte';
+	
 
 	let showModal = false;
 	let showLogIn = false;
-	let users = [
-		{ userName: "dzhang1", password: "dan@2023"}//, id: 1}
-	]
+	
 	const toggleModal = () => {
 		showModal = !showModal;
 	};
 	const toggleLogIn = () => {
-		showLogIn = !showLogIn;
+		window.location.href = '/login';
 	}
-	const addperson = () => {
-		showModal = false;
+	//change this later
+	const newScc = () =>{
+		window.location.href = '/createAccount';
 	}
-	const logIn = (e) =>{
-		const { userName, password} = e.detail;
-		const user = users.find(user => user.userName === userName && user.password === password);
-		
-		if (user) {
-			console.log("Logged in");
-			showLogIn = false;
-		} else {
-			console.log("Wrong username or password");
-			showLogIn = false;
-		}
+	const backToMain = () =>{
+		window.location.href = '/';
 	}
 </script>
 
 <header>
 	
 		
-			<img src={logo1} alt="Drexel Logo" />
+	<img src={logo1} on:click={backToMain} alt="Drexel Logo" />
+	<button on:click={newScc}>Create new sccount(one that works)</button>
 	
-	<button on:click={toggleModal}>Create a new account</button>
-	<button on:click={toggleLogIn}>Log in</button>
+	<button on:click={toggleLogIn}>Log in</button> <!--add stuff so that when it's clicked, something happens-->
 
 	
 </header>
 <main>
-	<Singup  ispromo={false} show={showModal} on:click={toggleModal}>
+	<Singup show={showModal} on:click={toggleModal}>
 		
 	</Singup>
-	<Modal  ispromo={false} show={showLogIn} on:click={toggleLogIn}>
-		<h3>Log In</h3>
-		<AddPerson on:addPerson={logIn}/>
-		
-	</Modal>
+	
 </main>
 <style>
 	header {
