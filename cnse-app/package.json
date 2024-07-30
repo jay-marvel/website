@@ -1,0 +1,53 @@
+{
+	"name": "cnse-app",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"preinstall": "npx only-allow pnpm",
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --check . && eslint .",
+		"format": "prettier --write ."
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^3.2.2",
+		"@sveltejs/kit": "^2.5.18",
+		"@sveltejs/vite-plugin-svelte": "^3.1.1",
+		"@types/bcrypt": "^5.0.2",
+		"@types/bcryptjs": "^2.4.6",
+		"@types/eslint": "^8.56.11",
+		"@types/jsonwebtoken": "^9.0.6",
+		"eslint": "^9.7.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-svelte": "^2.43.0",
+		"globals": "^15.8.0",
+		"prettier": "^3.3.3",
+		"prettier-plugin-svelte": "^3.2.6",
+		"svelte": "^4.2.18",
+		"svelte-check": "^3.8.4",
+		"tslib": "^2.6.3",
+		"typescript": "^5.5.3",
+		"typescript-eslint": "8.0.0-alpha.51",
+		"vite": "^5.3.4"
+	},
+	"type": "module",
+	"dependencies": {
+		"@fortawesome/free-brands-svg-icons": "^6.6.0",
+		"@fortawesome/free-solid-svg-icons": "^6.6.0",
+		"@sveltestrap/sveltestrap": "^6.2.7",
+		"axios": "^1.7.2",
+		"bcrypt": "^5.1.1",
+		"bcryptjs": "^2.4.3",
+		"bootstrap": "^5.3.3",
+		"jsonwebtoken": "^9.0.2",
+		"mongodb": "^6.8.0",
+		"svelte-fa": "^4.0.2"
+	},
+	"engines": {
+		"npm": "Please use pnpm",
+		"yarn": "Please use pnpm"
+	}
+}
